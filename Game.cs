@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using XmlData;
 namespace GameSaveInfo {
-    public class Game : AXmlDataEntry {
+    public class Game : AXmlDataEntry, IComparable<Game> {
         public string Name { get; protected set; }
         public string Title { get; protected set; }
         private XmlElement TitleElement;
@@ -126,5 +126,10 @@ namespace GameSaveInfo {
                 }
             }
         }
+
+        public int CompareTo(Game file) {
+            return this.Name.CompareTo(file.Name);
+        }
+
     }
 }

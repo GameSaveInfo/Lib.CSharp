@@ -31,7 +31,7 @@ namespace GameSaveInfo {
         }
 
         public Game getGame(string name) {
-            foreach (Game game in this.entries) {
+            foreach (Game game in this.Entries) {
                 if (game.Name == name)
                     return game;
             }
@@ -59,5 +59,6 @@ namespace GameSaveInfo {
 
             return ele;
         }
+
     }
 }

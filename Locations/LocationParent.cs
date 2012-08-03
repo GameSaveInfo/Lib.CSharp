@@ -11,8 +11,8 @@ namespace GameSaveInfo {
 
         public GameIdentifier game;
 
-        public LocationParent(XmlElement element)
-            : base(element) {
+        public LocationParent(Locations loc, XmlElement element)
+            : base(loc, element) {
 
         }
 

@@ -6,18 +6,19 @@ using System.Xml;
 using System.IO;
 using XmlData;
 namespace GameSaveInfo {
-    public abstract class AFile: AXmlDataEntry {
+    public abstract class AFile: AXmlDataSubEntry {
         public string Name { get; protected set; }
         public string Path { get; protected set; }
         public string OnlyFor { get; protected set; }
         public DateTime ModifiedAfter { get; protected set; }
 
-        protected AFile(string name, string path, XmlDocument doc): base(doc) {
+        protected AFile(AXmlDataSubEntry parent, string name, string path): base(parent) {
             Name = name;
             Path = path;
         }
 
-        protected AFile(XmlElement element): base(element) {
+        protected AFile(AXmlDataSubEntry parent, XmlElement element)
+            : base(parent,element) {
 
         }
 

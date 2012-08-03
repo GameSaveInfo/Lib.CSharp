@@ -5,7 +5,7 @@ using System.Text;
 using System.Xml;
 using XmlData;
 namespace GameSaveInfo {
-    public class FileType: AXmlDataEntry  {
+    public class FileType: AXmlDataSubEntry  {
         public List<SaveFile> Saves = new List<SaveFile>();
         public string Type { get; protected set; }
 
@@ -14,11 +14,12 @@ namespace GameSaveInfo {
         }
 
 
-        public FileType(string name, XmlDocument doc): base(doc) {
+        public FileType( GameVersion version, string name): base(version) {
             this.Type = name;
         }
 
-        public FileType(XmlElement element): base(element) {
+        public FileType(GameVersion version, XmlElement element)
+            : base(version,element) {
         }
 
         protected override void LoadData(XmlElement element) {
@@ -34,7 +35,7 @@ namespace GameSaveInfo {
             foreach (XmlElement child in element.ChildNodes) {
                 switch (child.Name) {
                     case "save":
-                        SaveFile save = new SaveFile(child, Type);
+                        SaveFile save = new SaveFile(this,child);
                         Saves.Add(save);
                         break;
                     default:
@@ -65,7 +66,12 @@ namespace GameSaveInfo {
             return files;
         }
 
-
+        public SaveFile addSave(string savePath, string saveFile) {
+            SaveFile save = new SaveFile(this, saveFile, savePath);
+            this.Saves.Add(save);
+            this.XML.AppendChild(save.XML);
+            return save;
+        }
 
     }
 }

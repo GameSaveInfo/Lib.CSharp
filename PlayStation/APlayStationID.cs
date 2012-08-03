@@ -6,7 +6,7 @@ namespace GameSaveInfo {
     public abstract class APlayStationID : LocationPath {
         public string prefix, suffix, append = null, type = null;
         public Int16 Disc = -1;
-        protected APlayStationID(XmlElement element): base(element) {
+        protected APlayStationID(XmlElement element): base(null, element) {
         }
 
         protected override void LoadData(XmlElement element) {
@@ -70,9 +70,9 @@ namespace GameSaveInfo {
 
             if (this.GetType() == typeof(PlayStationPortableID) ||
                 this.GetType() == typeof(PlayStation3ID)) {
-                save = new SaveFile(this.ToString(), null, this.type, null);
+                save = new SaveFile(this.ToString(), null);
             } else if (this.GetType() == typeof(PlayStation2ID) || this.GetType() == typeof(PlayStation1ID)) {
-                save = new SaveFile(null, this.ToString(), this.type, null);
+                save = new SaveFile(null, this.ToString());
             } else {
                 throw new NotSupportedException(this.GetType().ToString());
             }

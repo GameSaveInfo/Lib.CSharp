@@ -4,7 +4,7 @@ using System.IO;
 using System.Xml;
 using XmlData;
 namespace GameSaveInfo {
-    public abstract class ALocation: AXmlDataEntry, IComparable<ALocation> {
+    public abstract class ALocation: AXmlDataSubEntry, IComparable<ALocation> {
         public static readonly List<string> attributes = new List<string> {"append", "detract", "only_for","deprecated","gsm_id"};
         public abstract int CompareTo(ALocation comparable);
 
@@ -18,7 +18,7 @@ namespace GameSaveInfo {
 
 
         // Used to add or remove path elements
-        public string Append { get; protected set; }
+        public string Append { get; set; }
         public string Detract { get; protected set; }
         public bool IsDeprecated { get; protected set; }
         public string OnlyFor { get; protected set; }
@@ -27,9 +27,12 @@ namespace GameSaveInfo {
         public string language = null;
         public bool override_virtual_store = false;
 
-        protected ALocation(XmlElement element)
-            : base(element) {
+        protected ALocation(Locations loc) : base(loc) { }
+
+        protected ALocation(Locations loc, XmlElement element)
+            : base(loc, element) {
         }
+
         protected ALocation() : base() { }
 
         protected override void LoadData(XmlElement element) {
@@ -51,14 +54,17 @@ namespace GameSaveInfo {
             }
             LoadMoreData(element);
         }
+
         protected abstract void LoadMoreData(XmlElement element);
 
         protected override XmlElement WriteData(XmlElement element) {
-            addAtribute(element,"append",Append);
+            element =  WriteMoreData(element);
+            addAtribute(element, "append", Append);
             addAtribute(element,"detract",Detract);
-            addAtribute(element,"deprecated",IsDeprecated.ToString());
+            if(IsDeprecated)
+                addAtribute(element,"deprecated",IsDeprecated.ToString());
             addAtribute(element,"only_for",OnlyFor);
-            return WriteMoreData(element);
+            return element;
         }
         protected abstract XmlElement WriteMoreData(XmlElement element);
 

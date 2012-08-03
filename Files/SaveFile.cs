@@ -7,19 +7,29 @@ namespace GameSaveInfo {
     public class SaveFile: ExceptFile {
         public List<ExceptFile> Excepts = new List<ExceptFile>();
 
-        public SaveFile(string name, string path, string type, XmlDocument doc)
-            : base(name, path, type, doc) {
+        public override string ElementName {
+            get {
+                return "save";
+            }
         }
 
-        public SaveFile(XmlElement element, string type)
-            : base(element, type) {
+        public SaveFile(string name, string path)
+            : base(name, path) {
+        }
+
+        public SaveFile(FileType parent, string name, string path)
+            : base(parent, name, path) {
+        }
+
+        public SaveFile(FileType parent, XmlElement element)
+            : base(parent, element) {
         }
 
         protected override void LoadMoreData(XmlElement element) {
             foreach (XmlElement child in element.ChildNodes) {
                 switch (child.Name) {
                     case "except":
-                        ExceptFile except = new ExceptFile(child, Type);
+                        ExceptFile except = new ExceptFile(this, child);
                         Excepts.Add(except);
                         break;
                     default:
@@ -33,6 +43,13 @@ namespace GameSaveInfo {
                 element.AppendChild(ex.XML);
             }
             return element;
+        }
+
+        public ExceptFile addException(string filePath, string fileName) {
+            ExceptFile except = new ExceptFile(this, fileName, filePath);
+            Excepts.Add(except);
+            this.XML.AppendChild(except.XML);
+            return except;
         }
     }
 }

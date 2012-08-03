@@ -13,13 +13,27 @@ namespace GameSaveInfo {
                 return this.Parent as Game;
             }
         }
+
         public List<string> Contributors = new List<string>();
 
         public string Comment { get; protected set; }
         public string RestoreComment { get; protected set; }
 
         public bool IgnoreVirtualStore { get; protected set; }
-        public bool IsDeprecated { get; protected set; }
+
+        private bool _deprecated = false;
+        public bool IsDeprecated {
+            get {
+                if (Game.IsDeprecated)
+                    return true;
+                else
+                    return _deprecated;
+            }
+            protected set {
+                _deprecated = value;
+            }
+        }
+        
         public bool DetectionRequired { get; protected set; }
 
         public List<Link> Links = new List<Link>();
@@ -47,13 +61,25 @@ namespace GameSaveInfo {
                     return new List<ALocation>();
             }
         }
-        public Locations Locations;
+        private Locations _locations;
+        public Locations Locations {
+            get {
+                if (_locations == null)
+                    _locations = new Locations(this);
+                return _locations;
+            }
+            protected set {
+                _locations = value;
+            }
+        }
+
         public List<APlayStationID> PlayStationIDs = new List<APlayStationID>();
         public List<ScummVM> ScummVMs = new List<ScummVM>();
 
-        public GameVersion(Game parent)
+        public GameVersion(Game parent, string os, string release)
             : base(parent) {
-                DetectionRequired = false;
+            DetectionRequired = false;
+            this.ID = new GameIdentifier(parent.Name, os,null,null,null, release);
         }
 
         public GameVersion(Game parent, XmlElement ele)
@@ -89,10 +115,10 @@ namespace GameSaveInfo {
                         _title = sub.InnerText;
                         break;
                     case "locations":
-                        this.Locations = new GameSaveInfo.Locations(sub);
+                        this.Locations = new GameSaveInfo.Locations(this,sub);
                         break;
                     case "files":
-                        FileType type = new FileType(sub);
+                        FileType type = new FileType(this,sub);
                         FileTypes.Add(type.Type, type);
                         break;
                     case "ps_code":
@@ -108,7 +134,7 @@ namespace GameSaveInfo {
                         RestoreComment = sub.InnerText;
                         break;
                     case "identifier":
-                        Identifiers.Add(new Identifier(sub));
+                        Identifiers.Add(new Identifier(this,sub));
                         break;
                     case "scummvm":
                         ScummVMs.Add(new ScummVM(sub));
@@ -150,5 +176,48 @@ namespace GameSaveInfo {
 
             return element;
         }
+
+        public void addLocation(ALocation loc) {
+            Locations.addLocation(loc);
+        }
+        public void addContributor(string name) {
+            if (!Contributors.Contains(name)) {
+                XmlElement cont = createElement("contributor");
+                cont.InnerText = name;
+                this.XML.AppendChild(cont);
+                Contributors.Add(name);
+            }
+        }
+        public FileType addFileType(string name) {
+            if(!this.FileTypes.ContainsKey(name)) {
+                FileType type = new FileType(this, name);
+                this.FileTypes.Add(name, type);
+                this.XML.AppendChild(type.XML);
+            }
+            return this.FileTypes[name];
+        }
+
+        public Dictionary<string, Registry> RegistryEntries = new Dictionary<string, Registry>();
+
+        public RegistryEntry addRegEntry(RegRoot root, string key, string value, string type) {
+            if (!RegistryEntries.ContainsKey(type)) {
+                Registry reg = new Registry(this, type);
+                this.XML.AppendChild(reg.XML);
+                RegistryEntries.Add(type, reg);
+            }
+            Registry registry = RegistryEntries[type];
+            RegistryEntry entry = registry.addEntry(root, key, type);
+
+
+            return entry;
+        }
+
+        public Link addLink(string path) {
+            Link link = new Link(this, path);
+            this.XML.AppendChild(link.XML);
+            Links.Add(link);
+            return link;
+        }
+
     }
 }

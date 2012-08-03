@@ -1,6 +1,7 @@
 ﻿
 namespace GameSaveInfo {
     public enum RegRoot {
+        none,
         classes_root,
         current_user,
         current_config,

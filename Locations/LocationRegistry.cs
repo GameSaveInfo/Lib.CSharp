@@ -12,8 +12,15 @@ namespace GameSaveInfo {
             get { return "registry"; }
         }
 
-        public LocationRegistry(XmlElement element)
-            : base(element) {
+        public LocationRegistry(Locations loc, string root, string key, string value): base(loc) {
+            this.Root = root;
+            this.Key = key;
+            this.Value = value;
+        }
+
+
+        public LocationRegistry(Locations loc, XmlElement element)
+            : base(loc,element) {
         }
         protected override void LoadMoreData(XmlElement element) {
             foreach (XmlAttribute attrib in element.Attributes) {
@@ -54,7 +61,10 @@ namespace GameSaveInfo {
             return result;
         }
 
-        public RegRoot parseRegRoot(string parse_me) {
+        public static RegRoot parseRegRoot(string parse_me) {
+            if (parse_me.ToLower().StartsWith("hkey_"))
+                parse_me = parse_me.Substring(5);
+
             switch (parse_me.ToLower()) {
                 case "classes_root":
                     return RegRoot.classes_root;

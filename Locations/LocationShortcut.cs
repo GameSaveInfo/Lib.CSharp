@@ -11,8 +11,8 @@ namespace GameSaveInfo {
             get { return "shortcut"; }
         }
 
-        public LocationShortcut(XmlElement element)
-            : base(element) {
+        public LocationShortcut(Locations loc, XmlElement element)
+            : base(loc,element) {
         }
 
         protected override void LoadMoreData(XmlElement element) {

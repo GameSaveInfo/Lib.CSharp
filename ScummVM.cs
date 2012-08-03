@@ -10,7 +10,7 @@ namespace GameSaveInfo {
             get { return "scummvm"; }
         }
 
-        public ScummVM(XmlElement element): base(element) {
+        public ScummVM(XmlElement element): base(null,element) {
         }
 
         protected override void LoadData(XmlElement element) {

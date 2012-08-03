@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Xml;
+using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using XmlData;
 namespace GameSaveInfo {
@@ -34,6 +35,17 @@ namespace GameSaveInfo {
 
         public override string ElementName {
             get { return Type.ToString().ToLower(); }
+        }
+
+        public static string prepareGameName(string title) {
+            string name = Regex.Replace(title, @"[^A-Za-z0-9]+", "");
+            return name;
+        }
+
+
+        public void addVersion(GameVersion version) {
+            this.XML.AppendChild(version.XML);
+            this.Versions.Add(version);
         }
 
         protected override XmlElement WriteData(XmlElement element) {

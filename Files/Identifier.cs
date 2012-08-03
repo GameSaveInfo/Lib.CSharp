@@ -5,7 +5,7 @@ using System.Text;
 using System.Xml;
 namespace GameSaveInfo {
     public class Identifier: AFile {
-        public Identifier(XmlElement element) : base(element) { }
+        public Identifier(GameVersion version, XmlElement element) : base(version,element) { }
 
         public override string ElementName {
             get { return "identifier"; }

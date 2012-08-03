@@ -71,6 +71,8 @@
     <Compile Include="PlayStation\APlayStationID.cs" />
     <Compile Include="PlayStation\PlayStationPortableID.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registry\Registry.cs" />
+    <Compile Include="Registry\RegistryEntry.cs" />
     <Compile Include="ScummVM.cs" />
   </ItemGroup>
   <ItemGroup>

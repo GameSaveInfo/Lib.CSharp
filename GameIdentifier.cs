@@ -15,6 +15,12 @@ namespace GameSaveInfo {
 
         public static readonly List<string> attributes = new List<string> { "os", "platform", "region", "media", "release", "gsm_id" };
 
+        public GameIdentifier(string name, string os, string platform, string region, string media, string release): this(name,release) {
+            this.OS = os;
+            this.Platform = platform;
+            this.Region = release;
+            this.Media = media;
+        }
         public GameIdentifier(string name, string release) {
             this.Name = name;
             this.Release = release;

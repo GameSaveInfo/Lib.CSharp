@@ -11,15 +11,17 @@ namespace GameSaveInfo {
         public String Region { get; protected set; }
         public String Media { get; protected set; }
         public String Release { get; protected set; }
+        public String Type { get; protected set; }
 
 
-        public static readonly List<string> attributes = new List<string> { "os", "platform", "region", "media", "release", "gsm_id" };
+        public static readonly List<string> attributes = new List<string> { "os", "platform", "region", "media", "release","type", "gsm_id" };
 
-        public GameIdentifier(string name, string os, string platform, string region, string media, string release): this(name,release) {
+        public GameIdentifier(string name, string os, string platform, string region, string media, string release,string type): this(name,release) {
             this.OS = os;
             this.Platform = platform;
             this.Region = release;
             this.Media = media;
+            this.Type = type;
         }
         public GameIdentifier(string name, string release) {
             this.Name = name;
@@ -51,6 +53,9 @@ namespace GameSaveInfo {
                         break;
                     case "region":
                         Region = attrib.Value;
+                        break;
+                    case "type":
+                        Type = attrib.Value;
                         break;
                     case "detect":
                     case "virtualstore":
@@ -95,6 +100,11 @@ namespace GameSaveInfo {
                 attribute.Value = Release;
                 element.SetAttributeNode(attribute);
             }
+            if (Type != null) {
+                attribute = doc.CreateAttribute("type");
+                attribute.Value = Type;
+                element.SetAttributeNode(attribute);
+            }
 
             return element;
         }
@@ -112,6 +122,8 @@ namespace GameSaveInfo {
                 result = compare(a.Region, b.Region);
             if (result == 0)
                 result = compare(a.Media, b.Media);
+            if (result == 0)
+                result = compare(a.Type, b.Type);
             return result;
         }
 
@@ -132,6 +144,8 @@ namespace GameSaveInfo {
 
             if (id.Release != null)
                 return_me.Append(" " + id.Release);
+            if (id.Type != null)
+                return_me.Append(" " + id.Type);
             if (id.OS != null)
                 return_me.Append(" " + id.OS);
             if (id.Platform != null)
@@ -156,6 +170,8 @@ namespace GameSaveInfo {
                 re += Media.GetHashCode();
             if (Release != null)
                 re += Release.GetHashCode();
+            if (Type != null)
+                re += Type.GetHashCode();
 
             return re;
         }

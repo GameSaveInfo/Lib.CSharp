@@ -65,14 +65,14 @@ namespace GameSaveInfo {
             return id;
         }
 
-        public SaveFile convertToSaveFile() {
-            SaveFile save;
+        public Include convertToSaveFile() {
+            Include save;
 
             if (this.GetType() == typeof(PlayStationPortableID) ||
                 this.GetType() == typeof(PlayStation3ID)) {
-                save = new SaveFile(this.ToString(), null);
+                save = new Include(this.ToString(), null);
             } else if (this.GetType() == typeof(PlayStation2ID) || this.GetType() == typeof(PlayStation1ID)) {
-                save = new SaveFile(null, this.ToString());
+                save = new Include(null, this.ToString());
             } else {
                 throw new NotSupportedException(this.GetType().ToString());
             }

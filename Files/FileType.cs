@@ -6,7 +6,7 @@ using System.Xml;
 using XmlData;
 namespace GameSaveInfo {
     public class FileType: AXmlDataSubEntry  {
-        public List<SaveFile> Saves = new List<SaveFile>();
+        public List<Include> Inclusions = new List<Include>();
         public string Type { get; protected set; }
 
         public override string ElementName {
@@ -34,9 +34,9 @@ namespace GameSaveInfo {
             }
             foreach (XmlElement child in element.ChildNodes) {
                 switch (child.Name) {
-                    case "save":
-                        SaveFile save = new SaveFile(this,child);
-                        Saves.Add(save);
+                    case "include":
+                        Include save = new Include(this,child);
+                        Inclusions.Add(save);
                         break;
                     default:
                         throw new NotSupportedException(child.Name);
@@ -47,28 +47,28 @@ namespace GameSaveInfo {
 
         protected override XmlElement WriteData(XmlElement element) {
             addAtribute(element, "type", this.Type);
-            foreach (SaveFile save in Saves) {
+            foreach (Include save in Inclusions) {
                 element.AppendChild(save.XML);
             }
             return element;
         }
 
-        public void Add(SaveFile file) {
-            this.Saves.Add(file);
+        public void Add(Include file) {
+            this.Inclusions.Add(file);
             this.XML.AppendChild(file.XML);
         }
 
         public virtual List<string> FindMatching(string location) {
             List<string> files = new List<string>();
-            foreach (SaveFile save in Saves) {
+            foreach (Include save in Inclusions) {
                 files.AddRange(save.FindMatching(location));
             }
             return files;
         }
 
-        public SaveFile addSave(string savePath, string saveFile) {
-            SaveFile save = new SaveFile(this, saveFile, savePath);
-            this.Saves.Add(save);
+        public Include addSave(string savePath, string saveFile) {
+            Include save = new Include(this, saveFile, savePath);
+            this.Inclusions.Add(save);
             this.XML.AppendChild(save.XML);
             return save;
         }

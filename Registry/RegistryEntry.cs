@@ -14,13 +14,13 @@ namespace GameSaveInfo {
             get { return "entry"; }
         }
 
-        public RegistryEntry(Registry reg, RegRoot root, string key, string value): base(reg) {
+        public RegistryEntry(RegistryType reg, RegRoot root, string key, string value): base(reg) {
             this.Root = root;
             this.Key = key;
             this.Value = value;
         }
 
-        public RegistryEntry(Registry reg, XmlElement element) : base(reg, element) { 
+        public RegistryEntry(RegistryType reg, XmlElement element) : base(reg, element) { 
         
         }
 
@@ -33,7 +33,7 @@ namespace GameSaveInfo {
                     case "key":
                         this.Key = attr.Value;
                         break;
-                    case "values":
+                    case "value":
                         this.Value = attr.Value;
                         break;
                     default:

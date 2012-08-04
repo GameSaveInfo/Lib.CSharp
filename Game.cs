@@ -102,6 +102,8 @@ namespace GameSaveInfo {
                     case "follows":
                     case "for":
                     case "submitted":
+                    case "added":
+                    case "updated":
                         break;
                     default:
                         throw new NotSupportedException(attrib.Name);

@@ -142,6 +142,10 @@ namespace GameSaveInfo {
                     case "linkable":
                         Links.Add(new Link(this, sub));
                         break;
+                    case "registry":
+                        RegistryType rtype = new RegistryType(this,sub);
+                        RegistryTypes.Add(rtype.Type, rtype);
+                        break;
                     default:
                         throw new NotSupportedException(sub.Name);
                 }
@@ -197,15 +201,15 @@ namespace GameSaveInfo {
             return this.FileTypes[name];
         }
 
-        public Dictionary<string, Registry> RegistryEntries = new Dictionary<string, Registry>();
+        public Dictionary<string, RegistryType> RegistryTypes = new Dictionary<string, RegistryType>();
 
         public RegistryEntry addRegEntry(RegRoot root, string key, string value, string type) {
-            if (!RegistryEntries.ContainsKey(type)) {
-                Registry reg = new Registry(this, type);
+            if (!RegistryTypes.ContainsKey(type)) {
+                RegistryType reg = new RegistryType(this, type);
                 this.XML.AppendChild(reg.XML);
-                RegistryEntries.Add(type, reg);
+                RegistryTypes.Add(type, reg);
             }
-            Registry registry = RegistryEntries[type];
+            RegistryType registry = RegistryTypes[type];
             RegistryEntry entry = registry.addEntry(root, key, type);
 
 

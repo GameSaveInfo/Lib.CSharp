@@ -49,10 +49,10 @@
     <Compile Include="enums\GameType.cs" />
     <Compile Include="enums\RegRoot.cs" />
     <Compile Include="Files\AFile.cs" />
-    <Compile Include="Files\ExceptFile.cs" />
+    <Compile Include="Files\Exclude.cs" />
     <Compile Include="Files\FileType.cs" />
     <Compile Include="Files\Identifier.cs" />
-    <Compile Include="Files\SaveFile.cs" />
+    <Compile Include="Files\Include.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameIdentifier.cs" />
     <Compile Include="GameVersion.cs" />
@@ -71,7 +71,7 @@
     <Compile Include="PlayStation\APlayStationID.cs" />
     <Compile Include="PlayStation\PlayStationPortableID.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Registry\Registry.cs" />
+    <Compile Include="Registry\RegistryType.cs" />
     <Compile Include="Registry\RegistryEntry.cs" />
     <Compile Include="ScummVM.cs" />
   </ItemGroup>

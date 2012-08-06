@@ -23,6 +23,7 @@ namespace GameSaveInfo {
         }
 
         protected override void LoadData(XmlElement element) {
+            Type = "";
             foreach (XmlAttribute attr in element.Attributes) {
                 switch (attr.Name) {
                     case "type":

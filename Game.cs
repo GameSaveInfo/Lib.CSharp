@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Xml;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using XmlData;
@@ -38,8 +39,14 @@ namespace GameSaveInfo {
         }
 
         public static string prepareGameName(string title) {
-            string name = Regex.Replace(title, @"[^A-Za-z0-9]+", "");
-            return name;
+            string name = Regex.Replace(title, @"[^A-Za-z0-9 ]+", "");
+            name = name.Replace("&", "And");
+            StringBuilder build = new StringBuilder();
+            foreach (string sub in name.Split(' ')) {
+                build.Append(sub.Substring(0, 1).ToUpper());
+                build.Append(sub.Substring(1));
+            }
+            return build.ToString();
         }
 
 

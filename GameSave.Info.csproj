@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\AConverter.cs" />
     <Compile Include="enums\GameType.cs" />
     <Compile Include="enums\RegRoot.cs" />
     <Compile Include="Files\AFile.cs" />

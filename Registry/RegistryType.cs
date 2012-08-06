@@ -17,7 +17,9 @@ namespace GameSaveInfo {
             this.Type = type;
         }
 
-        public RegistryType(GameVersion version, XmlElement element) : base(version, element) { }
+        public RegistryType(GameVersion version, XmlElement element) : base(version, element) {
+            this.Type = "";
+        }
 
         public RegistryEntry addEntry(RegRoot root, string key, string value) {
             RegistryEntry entry = new RegistryEntry(this, root, key, value);

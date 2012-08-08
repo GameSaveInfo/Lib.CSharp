@@ -9,7 +9,9 @@ using XmlData;
 
 namespace GameSaveInfo {
     public class GameXmlFile: AXmlDataFile<Game> {
-        public static Version data_format_version = new Version(2, 0);
+        public static Version SupportedVersion = new Version(2, 0);
+
+        public static string Schema = "GameSaveInfo20.xsd";
 
         public DateTime date;
         public Version Version { get; protected set; }
@@ -23,6 +25,10 @@ namespace GameSaveInfo {
 
             if (DocumentElement.HasAttribute("majorVersion") && DocumentElement.HasAttribute("minorVersion"))
                 Version = new Version(Int32.Parse(DocumentElement.Attributes["majorVersion"].Value), Int32.Parse(DocumentElement.Attributes["minorVersion"].Value));
+
+            if (Version != SupportedVersion) {
+                throw new VersionNotSupportedException(Version);
+            }
         }
 
 
@@ -42,11 +48,11 @@ namespace GameSaveInfo {
             XmlElement ele = this.CreateElement("programs");
 
             XmlAttribute attr = this.CreateAttribute("majorVersion");
-            attr.Value = data_format_version.Major.ToString();
+            attr.Value = SupportedVersion.Major.ToString();
             ele.Attributes.Append(attr);
 
             attr = this.CreateAttribute("minorVersion");
-            attr.Value = data_format_version.Minor.ToString();
+            attr.Value = SupportedVersion.Minor.ToString();
             ele.Attributes.Append(attr);
 
             attr = this.CreateAttribute("xmlns:xsi");
@@ -54,7 +60,7 @@ namespace GameSaveInfo {
             ele.Attributes.Append(attr);
 
             attr = this.CreateAttribute("xsi:noNamespaceSchemaLocation");
-            attr.Value = "games.xsd";
+            attr.Value = Schema;
             ele.Attributes.Append(attr);
 
             return ele;

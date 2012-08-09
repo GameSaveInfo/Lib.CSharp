@@ -39,6 +39,8 @@ namespace GameSaveInfo {
         }
 
         public static string prepareGameName(string title) {
+            if (title == "")
+                return "";
             string name = Regex.Replace(title, @"[^A-Za-z0-9 ]+", "");
             name = name.Replace("&", "And");
             StringBuilder build = new StringBuilder();

@@ -137,7 +137,7 @@ namespace GameSaveInfo {
                         Identifiers.Add(new Identifier(this,sub));
                         break;
                     case "scummvm":
-                        ScummVMs.Add(new ScummVM(sub));
+                        ScummVMs.Add(new ScummVM(this, sub));
                         break;
                     case "linkable":
                         Links.Add(new Link(this, sub));

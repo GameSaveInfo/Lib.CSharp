@@ -9,7 +9,7 @@ namespace GameSaveInfo {
 
         public override string ElementName {
             get {
-                return "save";
+                return "include";
             }
         }
 

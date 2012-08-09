@@ -13,8 +13,9 @@ namespace GameSaveInfo {
             this.Detract = loc.Detract;
             this.OnlyFor = loc.OnlyFor;
             this.IsDeprecated = loc.IsDeprecated;
-
+            
         }
+        protected ALocation(GameVersion parent, XmlElement element) : base(parent, element) { }
 
 
         // Used to add or remove path elements

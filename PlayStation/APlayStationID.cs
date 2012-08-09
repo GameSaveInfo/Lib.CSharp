@@ -6,7 +6,7 @@ namespace GameSaveInfo {
     public abstract class APlayStationID : LocationPath {
         public string prefix, suffix, append = null, type = null;
         public Int16 Disc = -1;
-        protected APlayStationID(XmlElement element): base(null, element) {
+        protected APlayStationID(GameVersion parent, XmlElement element): base(parent, element) {
         }
 
         protected override void LoadData(XmlElement element) {
@@ -48,16 +48,16 @@ namespace GameSaveInfo {
             APlayStationID id;
             switch (parent.ID.OS) {
                 case "PS1":
-                    id = new PlayStation1ID(element);
+                    id = new PlayStation1ID(parent,element);
                     break;
                 case "PS2":
-                    id = new PlayStation2ID(element);
+                    id = new PlayStation2ID(parent,element);
                     break;
                 case "PS3":
-                    id = new PlayStation3ID(element);
+                    id = new PlayStation3ID(parent,element);
                     break;
                 case "PSP":
-                    id = new PlayStationPortableID(element);
+                    id = new PlayStationPortableID(parent,element);
                     break;
                 default:
                     throw new NotSupportedException(parent.ID.OS);

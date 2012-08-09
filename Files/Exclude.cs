@@ -9,7 +9,7 @@ namespace GameSaveInfo {
         public string Type { get; protected set; }
 
         public override string ElementName {
-            get { return "except"; }
+            get { return "exclude"; }
         }
 
         protected Exclude(string name, string path) : base(null, name, path) { }

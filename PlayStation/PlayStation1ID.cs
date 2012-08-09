@@ -5,7 +5,7 @@ using System.Text;
 using System.Xml;
 namespace GameSaveInfo {
     public class PlayStation1ID : APlayStationID {
-        public PlayStation1ID(XmlElement element) : base(element) { }
+        public PlayStation1ID(GameVersion parent, XmlElement element) : base(parent, element) { }
         public override string ToString() {
             return ExportPattern();
         }

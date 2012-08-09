@@ -19,6 +19,8 @@ namespace GameSaveInfo {
             get { return "path"; }
         }
 
+        protected LocationPath(GameVersion parent, XmlElement element) : base(parent, element) { }
+
         protected LocationPath() { }
 
         public LocationPath(EnvironmentVariable ev, string path) {
@@ -83,6 +85,15 @@ namespace GameSaveInfo {
                 return EV.ToString();
             else
                 return System.IO.Path.Combine(EV.ToString(), Path);
+        }
+        public string full_relative_dir_path {
+            get {
+                if (Path == null || Path == "") {
+                    return EV.ToString();
+                } else {
+                    return System.IO.Path.Combine(EV.ToString(), Path);
+                }
+            }
         }
 
 

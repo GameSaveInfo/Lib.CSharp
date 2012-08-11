@@ -19,7 +19,8 @@ namespace GameSaveInfo {
         public GameIdentifier(string name, string os, string platform, string region, string media, string release,string type): this(name,release) {
             this.OS = os;
             this.Platform = platform;
-            this.Region = release;
+            this.Release = release;
+            this.Region = region;
             this.Media = media;
             this.Type = type;
         }

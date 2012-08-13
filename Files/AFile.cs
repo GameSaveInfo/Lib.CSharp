@@ -12,6 +12,12 @@ namespace GameSaveInfo {
         public string OnlyFor { get; protected set; }
         public DateTime ModifiedAfter { get; protected set; }
 
+        protected AFile(string name, string path)
+            : base() {
+            Name = name;
+            Path = path;
+        }
+
         protected AFile(AXmlDataSubEntry parent, string name, string path): base(parent) {
             Name = name;
             Path = path;

@@ -39,5 +39,17 @@ namespace GameSaveInfo {
             ScummVM scumm = comparable as ScummVM;
             return this.Name.CompareTo(scumm.Name);
         }
+
+
+        public Include convertToInclude() {
+            Include save;
+
+
+            save = new Include(this.Name + "*",null, null);
+
+
+            return save;
+        }
+
     }
 }

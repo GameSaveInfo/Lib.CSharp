@@ -12,7 +12,9 @@ namespace GameSaveInfo {
             get { return "exclude"; }
         }
 
-        protected Exclude(string name, string path) : base(null, name, path) { }
+        protected Exclude(string name, string path, string type) : base(name, path) {
+            Type = type;
+        }
 
         public Exclude(Include parent, string name, string path)
             : this(parent, name, path, parent.Type) {

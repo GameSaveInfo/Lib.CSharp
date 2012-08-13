@@ -13,8 +13,8 @@ namespace GameSaveInfo {
             }
         }
 
-        public Include(string name, string path)
-            : base(name, path) {
+        public Include(string name, string path, string type)
+            : base(name, path, type) {
         }
 
         public Include(FileType parent, string name, string path)

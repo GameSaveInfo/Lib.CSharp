@@ -70,9 +70,9 @@ namespace GameSaveInfo {
 
             if (this.GetType() == typeof(PlayStationPortableID) ||
                 this.GetType() == typeof(PlayStation3ID)) {
-                save = new Include(this.ToString(), null, this.type);
+                save = new Include(null as string, this.ToString(), this.type);
             } else if (this.GetType() == typeof(PlayStation2ID) || this.GetType() == typeof(PlayStation1ID)) {
-                save = new Include(null as String, this.ToString(), this.type);
+                save = new Include(this.ToString(), null as String, this.type);
             } else {
                 throw new NotSupportedException(this.GetType().ToString());
             }

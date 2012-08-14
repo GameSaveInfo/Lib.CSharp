@@ -22,7 +22,6 @@ namespace GameSaveInfo {
             else
                 date = DateTime.Parse("November 5, 1955");
 
-
             if (DocumentElement.HasAttribute("majorVersion") && DocumentElement.HasAttribute("minorVersion"))
                 Version = new Version(Int32.Parse(DocumentElement.Attributes["majorVersion"].Value), Int32.Parse(DocumentElement.Attributes["minorVersion"].Value));
 
@@ -36,7 +35,7 @@ namespace GameSaveInfo {
             try {
                 return new Game(element);
             } catch (NotSupportedException ex) {
-
+                throw new VersionNotSupportedException(this.Version);
             }
         }
 

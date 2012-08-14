@@ -33,7 +33,11 @@ namespace GameSaveInfo {
 
 
         protected override Game CreateDataEntry(System.Xml.XmlElement element) {
-            return new Game(element);
+            try {
+                return new Game(element);
+            } catch (NotSupportedException ex) {
+
+            }
         }
 
         public Game getGame(string name) {

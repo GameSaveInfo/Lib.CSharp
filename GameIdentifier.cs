@@ -44,7 +44,24 @@ namespace GameSaveInfo {
                         OS = attrib.Value;
                         break;
                     case "platform":
-                        Platform = attrib.Value;
+                        switch (attrib.Value) {
+                            case "Linux":
+                            case "DOS":
+                            case "OSX":
+                            case "PS1":
+                            case "PS2":
+                            case "PS3":
+                            case "PSP":
+                            case "Windows":
+                                OS = attrib.Value;
+                                break;
+                            case "Steam":
+                                Platform = "SteamCloud";
+                                break;
+                            default:
+                                Platform = attrib.Value;
+                                break;
+                        }
                         break;
                     case "media":
                         Media = attrib.Value;

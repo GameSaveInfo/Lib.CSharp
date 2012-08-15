@@ -11,12 +11,16 @@ namespace GameSaveInfo {
     public class GameXmlFile: AXmlDataFile<Game> {
         public static Version SupportedVersion = new Version(2, 0);
 
-        public static string Schema = "GameSaveInfo20.xsd";
+        public const string Schema = "GameSaveInfo20.xsd";
 
         public DateTime date;
         public Version Version { get; protected set; }
 
         public GameXmlFile(FileInfo file): base(file,true) {
+        }
+
+        protected override void loadXmlFile() {
+
             if (DocumentElement.HasAttribute("date"))
                 date = DateTime.Parse(DocumentElement.Attributes["date"].Value);
             else
@@ -28,15 +32,12 @@ namespace GameSaveInfo {
             if (Version != SupportedVersion) {
                 throw new VersionNotSupportedException(Version);
             }
+
+            base.loadXmlFile();
         }
 
-
         protected override Game CreateDataEntry(System.Xml.XmlElement element) {
-            try {
                 return new Game(element);
-            } catch (NotSupportedException ex) {
-                throw new VersionNotSupportedException(this.Version);
-            }
         }
 
         public Game getGame(string name) {

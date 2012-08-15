@@ -4,6 +4,11 @@ using System.Linq;
 using System.Text;
 
 namespace GameSaveInfo.Converters {
-    class AConverter {
+    public class AConverter {
+
+        public static bool CanConvert(Version version) {
+            return false;
+        }
+
     }
 }

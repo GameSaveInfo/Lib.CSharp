@@ -9,6 +9,10 @@ namespace GameSaveInfo {
         protected APlayStationID(GameVersion parent, XmlElement element): base(parent, element) {
         }
 
+        public void clearPath() {
+            this.Path = null;
+        }
+
         protected override void LoadData(XmlElement element) {
             foreach (XmlAttribute atr in element.Attributes) {
                 switch (atr.Name) {

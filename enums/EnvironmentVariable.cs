@@ -24,14 +24,16 @@ namespace GameSaveInfo {
         Desktop,
         StartMenu,
 
-        FlashShared,
-        UbisoftSaveStorage,
-
         VirtualStore,
 
         // In the analyzer we prefer the real program files path over the virtualstore one, so we give them higher priority
         ProgramFiles,
         ProgramFilesX86,
+
+
+        FlashShared,
+        UbisoftSaveStorage,
+
 
         // We also prefer Steam paths over Program Files
         SteamUser,

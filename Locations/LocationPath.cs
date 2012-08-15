@@ -13,7 +13,29 @@ namespace GameSaveInfo {
         public bool IsSelected { get; set; }
 
         // Holds only the relative path from the root
-        public string Path { get;  set; }
+        public string Path { get; protected set; }
+
+        public void ReplacePath(string path) {
+            this.Path = path;
+        }
+
+        public void PrependPath(string path) {
+            if (path == null)
+                return;
+            if (Path == null)
+                Path = path;
+            else
+                Path = System.IO.Path.Combine(path, Path);
+        }
+
+        public void AppendPath(string path) {
+            if (path == null)
+                return;
+            if (Path == null)
+                Path = path;
+            else
+                Path = System.IO.Path.Combine(Path, path);
+        }
 
         public override string ElementName {
             get { return "path"; }

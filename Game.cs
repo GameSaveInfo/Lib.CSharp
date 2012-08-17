@@ -45,8 +45,10 @@ namespace GameSaveInfo {
             name = name.Replace("&", "And");
             StringBuilder build = new StringBuilder();
             foreach (string sub in name.Split(' ')) {
-                build.Append(sub.Substring(0, 1).ToUpper());
-                build.Append(sub.Substring(1));
+                if (sub.Length > 0) {
+                    build.Append(sub.Substring(0, 1).ToUpper());
+                    build.Append(sub.Substring(1));
+                }
             }
             return build.ToString();
         }

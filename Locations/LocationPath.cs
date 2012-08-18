@@ -108,7 +108,7 @@ namespace GameSaveInfo {
             else
                 return System.IO.Path.Combine(EV.ToString(), Path);
         }
-        public string full_relative_dir_path {
+        public virtual string FullRelativeDirPath {
             get {
                 if (Path == null || Path == "") {
                     return EV.ToString();

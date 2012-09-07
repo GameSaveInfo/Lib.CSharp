@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml;
 using XmlData;
 namespace GameSaveInfo {
-    public class RegistryType: AXmlDataSubEntry {
+    public class RegistryType : AXmlDataSubEntry {
         public string Type { get; protected set; }
         public List<RegistryEntry> Entries = new List<RegistryEntry>();
 
@@ -13,11 +11,13 @@ namespace GameSaveInfo {
             get { return "registry"; }
         }
 
-        public RegistryType(GameVersion version, string type): base(version) {
+        public RegistryType(GameVersion version, string type)
+            : base(version) {
             this.Type = type;
         }
 
-        public RegistryType(GameVersion version, XmlElement element) : base(version, element) {
+        public RegistryType(GameVersion version, XmlElement element)
+            : base(version, element) {
             this.Type = "";
         }
 

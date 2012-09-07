@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Text;
-using System.Collections.Generic;
 using System.Xml;
 namespace GameSaveInfo {
     public abstract class APlayStationID : LocationPath {
         public string prefix, suffix, append = null, type = null;
         public Int16 Disc = -1;
-        protected APlayStationID(GameVersion parent, XmlElement element): base(parent, element) {
+        protected APlayStationID(GameVersion parent, XmlElement element)
+            : base(parent, element) {
         }
 
         public void clearPath() {
@@ -52,16 +52,16 @@ namespace GameSaveInfo {
             APlayStationID id;
             switch (parent.ID.OS) {
                 case "PS1":
-                    id = new PlayStation1ID(parent,element);
+                    id = new PlayStation1ID(parent, element);
                     break;
                 case "PS2":
-                    id = new PlayStation2ID(parent,element);
+                    id = new PlayStation2ID(parent, element);
                     break;
                 case "PS3":
-                    id = new PlayStation3ID(parent,element);
+                    id = new PlayStation3ID(parent, element);
                     break;
                 case "PSP":
-                    id = new PlayStationPortableID(parent,element);
+                    id = new PlayStationPortableID(parent, element);
                     break;
                 default:
                     throw new NotSupportedException(parent.ID.OS);
@@ -110,13 +110,13 @@ namespace GameSaveInfo {
             APlayStationID id = comparable as APlayStationID;
             int result = 0;
 
-            result = compare(this.prefix,id.prefix);
+            result = compare(this.prefix, id.prefix);
 
             if (result == 0)
-                result = compare(this.suffix,id.suffix);
+                result = compare(this.suffix, id.suffix);
 
             if (result == 0)
-                result = compare(this.append,id.append);
+                result = compare(this.append, id.append);
 
 
             return result;
@@ -127,6 +127,6 @@ namespace GameSaveInfo {
 
 
 
- 
+
 
 }

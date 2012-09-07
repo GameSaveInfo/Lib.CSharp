@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Xml;
 namespace GameSaveInfo {
-    public class GameIdentifier: IComparable<GameIdentifier>, IEquatable<GameIdentifier> {
+    public class GameIdentifier : IComparable<GameIdentifier>, IEquatable<GameIdentifier> {
         public String Name { get; protected set; }
         public String OS { get; protected set; }
         public String Platform { get; protected set; }
@@ -14,9 +13,10 @@ namespace GameSaveInfo {
         public String Type { get; protected set; }
 
 
-        public static readonly List<string> attributes = new List<string> { "os", "platform", "region", "media", "release","type", "gsm_id" };
+        public static readonly List<string> attributes = new List<string> { "os", "platform", "region", "media", "release", "type", "gsm_id" };
 
-        public GameIdentifier(string name, string os, string platform, string region, string media, string release,string type): this(name,release) {
+        public GameIdentifier(string name, string os, string platform, string region, string media, string release, string type)
+            : this(name, release) {
             this.OS = os;
             this.Platform = platform;
             this.Release = release;
@@ -28,7 +28,8 @@ namespace GameSaveInfo {
             this.Name = name;
             this.Release = release;
         }
-        public GameIdentifier(string name, XmlElement element): this(element) {
+        public GameIdentifier(string name, XmlElement element)
+            : this(element) {
             this.Name = name;
         }
         public GameIdentifier(XmlElement element) {

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml;
 using XmlData;
 namespace GameSaveInfo {
@@ -33,7 +31,7 @@ namespace GameSaveInfo {
                 _deprecated = value;
             }
         }
-        
+
         public bool DetectionRequired { get; protected set; }
 
         public List<Link> Links = new List<Link>();
@@ -79,12 +77,12 @@ namespace GameSaveInfo {
         public GameVersion(Game parent, string os, string release)
             : base(parent) {
             DetectionRequired = false;
-            this.ID = new GameIdentifier(parent.Name, os,null,null,null, release,null);
+            this.ID = new GameIdentifier(parent.Name, os, null, null, null, release, null);
         }
 
         public GameVersion(Game parent, XmlElement ele)
             : base(parent, ele) {
-                DetectionRequired = false;
+            DetectionRequired = false;
         }
 
         protected override void LoadData(XmlElement element) {
@@ -115,10 +113,10 @@ namespace GameSaveInfo {
                         _title = sub.InnerText;
                         break;
                     case "locations":
-                        this.Locations = new GameSaveInfo.Locations(this,sub);
+                        this.Locations = new GameSaveInfo.Locations(this, sub);
                         break;
                     case "files":
-                        FileType type = new FileType(this,sub);
+                        FileType type = new FileType(this, sub);
                         FileTypes.Add(type.Type, type);
                         break;
                     case "ps_code":
@@ -134,7 +132,7 @@ namespace GameSaveInfo {
                         RestoreComment = sub.InnerText;
                         break;
                     case "identifier":
-                        Identifiers.Add(new Identifier(this,sub));
+                        Identifiers.Add(new Identifier(this, sub));
                         break;
                     case "scummvm":
                         ScummVMs.Add(new ScummVM(this, sub));
@@ -143,7 +141,7 @@ namespace GameSaveInfo {
                         Links.Add(new Link(this, sub));
                         break;
                     case "registry":
-                        RegistryType rtype = new RegistryType(this,sub);
+                        RegistryType rtype = new RegistryType(this, sub);
                         RegistryTypes.Add(rtype.Type, rtype);
                         break;
                     default:
@@ -195,7 +193,7 @@ namespace GameSaveInfo {
         public FileType addFileType(string name) {
             if (name == null)
                 name = "";
-            if(!this.FileTypes.ContainsKey(name)) {
+            if (!this.FileTypes.ContainsKey(name)) {
                 FileType type = new FileType(this, name);
                 this.FileTypes.Add(name, type);
                 this.XML.AppendChild(type.XML);

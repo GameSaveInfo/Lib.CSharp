@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
 using System.Xml;
 using XmlData;
 
 namespace GameSaveInfo {
-    public class GameXmlFile: AXmlDataFile<Game> {
+    public class GameXmlFile : AXmlDataFile<Game> {
         public static Version SupportedVersion = new Version(2, 0);
 
         public const string Schema = "GameSaveInfo20.xsd";
@@ -16,7 +12,8 @@ namespace GameSaveInfo {
         public DateTime date;
         public Version Version { get; protected set; }
 
-        public GameXmlFile(FileInfo file): base(file,true) {
+        public GameXmlFile(FileInfo file)
+            : base(file, true) {
         }
 
         protected override void loadXmlFile() {
@@ -37,7 +34,7 @@ namespace GameSaveInfo {
         }
 
         protected override Game CreateDataEntry(System.Xml.XmlElement element) {
-                return new Game(element);
+            return new Game(element);
         }
 
         public Game getGame(string name) {

@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Xml;
+using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Collections.Generic;
+using System.Xml;
 using XmlData;
 namespace GameSaveInfo {
     public class Game : AXmlDataEntry, IComparable<Game> {
@@ -15,10 +15,11 @@ namespace GameSaveInfo {
 
         public List<GameVersion> Versions = new List<GameVersion>();
 
-        protected Game(XmlDocument doc): base(doc) { }
+        protected Game(XmlDocument doc) : base(doc) { }
 
 
-        public Game(string name, string title, string comment, bool deprecated, GameType type, XmlDocument doc): this(doc) {
+        public Game(string name, string title, string comment, bool deprecated, GameType type, XmlDocument doc)
+            : this(doc) {
             this.Name = name;
             this.Title = title;
             this.Comment = comment;

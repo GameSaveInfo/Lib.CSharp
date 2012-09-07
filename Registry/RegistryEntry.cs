@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml;
 using XmlData;
 namespace GameSaveInfo {
-    public class RegistryEntry: AXmlDataSubEntry {
+    public class RegistryEntry : AXmlDataSubEntry {
         public RegRoot Root { get; protected set; }
         public string Key { get; protected set; }
         public string Value { get; protected set; }
@@ -14,14 +11,16 @@ namespace GameSaveInfo {
             get { return "entry"; }
         }
 
-        public RegistryEntry(RegistryType reg, RegRoot root, string key, string value): base(reg) {
+        public RegistryEntry(RegistryType reg, RegRoot root, string key, string value)
+            : base(reg) {
             this.Root = root;
             this.Key = key;
             this.Value = value;
         }
 
-        public RegistryEntry(RegistryType reg, XmlElement element) : base(reg, element) { 
-        
+        public RegistryEntry(RegistryType reg, XmlElement element)
+            : base(reg, element) {
+
         }
 
         protected override void LoadData(XmlElement element) {

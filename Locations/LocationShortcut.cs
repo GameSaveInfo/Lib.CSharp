@@ -1,5 +1,5 @@
-﻿using System.Xml;
-using System;
+﻿using System;
+using System.Xml;
 namespace GameSaveInfo {
     public class LocationShortcut : ALocation {
 
@@ -12,7 +12,7 @@ namespace GameSaveInfo {
         }
 
         public LocationShortcut(Locations loc, XmlElement element)
-            : base(loc,element) {
+            : base(loc, element) {
         }
 
         protected override void LoadMoreData(XmlElement element) {

@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml;
+﻿using System.Xml;
 using XmlData;
 namespace GameSaveInfo {
-    public class Exclude: AFile {
+    public class Exclude : AFile {
         public string Type { get; protected set; }
 
         public override string ElementName {
             get { return "exclude"; }
         }
 
-        protected Exclude(string name, string path, string type) : base(name, path) {
+        protected Exclude(string name, string path, string type)
+            : base(name, path) {
             Type = type;
         }
 
@@ -21,8 +18,8 @@ namespace GameSaveInfo {
         }
 
 
-        protected Exclude(FileType parent, string name, string path): 
-             this(parent, name, path, parent.Type) {
+        protected Exclude(FileType parent, string name, string path) :
+            this(parent, name, path, parent.Type) {
         }
 
         private Exclude(AXmlDataSubEntry parent, string name, string path, string type)
@@ -39,11 +36,11 @@ namespace GameSaveInfo {
 
         private Exclude(AXmlDataSubEntry parent, XmlElement element, string type)
             : base(parent, element) {
-                this.Type = type;
+            this.Type = type;
         }
 
         protected override void LoadMoreData(XmlElement element) {
-            
+
         }
 
         protected override XmlElement WriteMoreData(XmlElement element) {

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Xml;
-using XmlData;
 namespace GameSaveInfo {
-    public class ScummVM: ALocation {
+    public class ScummVM : ALocation {
 
         public String Name { get; protected set; }
 
@@ -10,7 +9,8 @@ namespace GameSaveInfo {
             get { return "scummvm"; }
         }
 
-        public ScummVM(GameVersion parent, XmlElement element): base(parent,element) {
+        public ScummVM(GameVersion parent, XmlElement element)
+            : base(parent, element) {
         }
 
         protected override void LoadData(XmlElement element) {
@@ -45,7 +45,7 @@ namespace GameSaveInfo {
             Include save;
 
 
-            save = new Include(this.Name + "*",null, null);
+            save = new Include(this.Name + "*", null, null);
 
 
             return save;

@@ -1,7 +1,5 @@
-﻿using System.IO;
-using System;
+﻿using System;
 using System.Xml;
-using XmlData;
 namespace GameSaveInfo {
     public class LocationPath : ALocation {
         // Used when dealing with a path
@@ -50,7 +48,8 @@ namespace GameSaveInfo {
             this.Path = path;
         }
 
-        public LocationPath(Locations loc, EnvironmentVariable ev, string path): base(loc) {
+        public LocationPath(Locations loc, EnvironmentVariable ev, string path)
+            : base(loc) {
             this.EV = ev;
             this.Path = path;
         }
@@ -60,7 +59,7 @@ namespace GameSaveInfo {
         }
 
         public LocationPath(LocationPath copy_me)
-            : base(copy_me) {            
+            : base(copy_me) {
             EV = copy_me.EV;
             Path = copy_me.Path;
             this.IsEnabled = copy_me.IsEnabled;

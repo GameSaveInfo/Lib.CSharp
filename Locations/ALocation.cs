@@ -4,16 +4,17 @@ using System.IO;
 using System.Xml;
 using XmlData;
 namespace GameSaveInfo {
-    public abstract class ALocation: AXmlDataSubEntry, IComparable<ALocation> {
-        public static readonly List<string> attributes = new List<string> {"append", "detract", "only_for","deprecated","gsm_id"};
+    public abstract class ALocation : AXmlDataSubEntry, IComparable<ALocation> {
+        public static readonly List<string> attributes = new List<string> { "append", "detract", "only_for", "deprecated", "gsm_id" };
         public abstract int CompareTo(ALocation comparable);
 
-        protected ALocation(ALocation loc): base() {
+        protected ALocation(ALocation loc)
+            : base() {
             this.Append = loc.Append;
             this.Detract = loc.Detract;
             this.OnlyFor = loc.OnlyFor;
             this.IsDeprecated = loc.IsDeprecated;
-            
+
         }
         protected ALocation(GameVersion parent, XmlElement element) : base(parent, element) { }
 
@@ -59,12 +60,12 @@ namespace GameSaveInfo {
         protected abstract void LoadMoreData(XmlElement element);
 
         protected override XmlElement WriteData(XmlElement element) {
-            element =  WriteMoreData(element);
+            element = WriteMoreData(element);
             addAtribute(element, "append", Append);
-            addAtribute(element,"detract",Detract);
-            if(IsDeprecated)
-                addAtribute(element,"deprecated",IsDeprecated.ToString());
-            addAtribute(element,"only_for",OnlyFor);
+            addAtribute(element, "detract", Detract);
+            if (IsDeprecated)
+                addAtribute(element, "deprecated", IsDeprecated.ToString());
+            addAtribute(element, "only_for", OnlyFor);
             return element;
         }
         protected abstract XmlElement WriteMoreData(XmlElement element);

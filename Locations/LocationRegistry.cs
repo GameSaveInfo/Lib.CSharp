@@ -12,7 +12,8 @@ namespace GameSaveInfo {
             get { return "registry"; }
         }
 
-        public LocationRegistry(Locations loc, string root, string key, string value): base(loc) {
+        public LocationRegistry(Locations loc, string root, string key, string value)
+            : base(loc) {
             this.Root = root;
             this.Key = key;
             this.Value = value;
@@ -20,7 +21,7 @@ namespace GameSaveInfo {
 
 
         public LocationRegistry(Locations loc, XmlElement element)
-            : base(loc,element) {
+            : base(loc, element) {
         }
         protected override void LoadMoreData(XmlElement element) {
             foreach (XmlAttribute attrib in element.Attributes) {

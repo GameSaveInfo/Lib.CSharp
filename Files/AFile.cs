@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml;
 using System.IO;
+using System.Xml;
 using XmlData;
 namespace GameSaveInfo {
-    public abstract class AFile: AXmlDataSubEntry {
+    public abstract class AFile : AXmlDataSubEntry {
         public string Name { get; protected set; }
         public string Path { get; protected set; }
         public string OnlyFor { get; protected set; }
@@ -18,13 +16,14 @@ namespace GameSaveInfo {
             Path = path;
         }
 
-        protected AFile(AXmlDataSubEntry parent, string name, string path): base(parent) {
+        protected AFile(AXmlDataSubEntry parent, string name, string path)
+            : base(parent) {
             Name = name;
             Path = path;
         }
 
         protected AFile(AXmlDataSubEntry parent, XmlElement element)
-            : base(parent,element) {
+            : base(parent, element) {
 
         }
 

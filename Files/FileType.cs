@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml;
 using XmlData;
 namespace GameSaveInfo {
-    public class FileType: AXmlDataSubEntry  {
+    public class FileType : AXmlDataSubEntry {
         public List<Include> Inclusions = new List<Include>();
         public string Type { get; protected set; }
 
@@ -14,12 +12,13 @@ namespace GameSaveInfo {
         }
 
 
-        public FileType( GameVersion version, string name): base(version) {
+        public FileType(GameVersion version, string name)
+            : base(version) {
             this.Type = name;
         }
 
         public FileType(GameVersion version, XmlElement element)
-            : base(version,element) {
+            : base(version, element) {
         }
 
         protected override void LoadData(XmlElement element) {
@@ -36,7 +35,7 @@ namespace GameSaveInfo {
             foreach (XmlElement child in element.ChildNodes) {
                 switch (child.Name) {
                     case "include":
-                        Include save = new Include(this,child);
+                        Include save = new Include(this, child);
                         Inclusions.Add(save);
                         break;
                     default:

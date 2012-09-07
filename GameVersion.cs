@@ -193,6 +193,8 @@ namespace GameSaveInfo {
             }
         }
         public FileType addFileType(string name) {
+            if (name == null)
+                name = "";
             if(!this.FileTypes.ContainsKey(name)) {
                 FileType type = new FileType(this, name);
                 this.FileTypes.Add(name, type);

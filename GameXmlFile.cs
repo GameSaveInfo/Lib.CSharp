@@ -18,8 +18,8 @@ namespace GameSaveInfo {
 
         protected override void loadXmlFile() {
 
-            if (DocumentElement.HasAttribute("date"))
-                date = DateTime.Parse(DocumentElement.Attributes["date"].Value);
+            if (DocumentElement.HasAttribute("updated"))
+                date = DateTime.Parse(DocumentElement.Attributes["updated"].Value);
             else
                 date = DateTime.Parse("November 5, 1955");
 

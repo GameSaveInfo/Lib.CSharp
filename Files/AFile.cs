@@ -58,7 +58,7 @@ namespace GameSaveInfo {
             if (ModifiedAfter != new DateTime())
                 throw new Exception("Don't know ho to write modified after!");
 
-            addAtribute(element, "only_for", Path);
+            addAtribute(element, "only_for", OnlyFor);
             return WriteMoreData(element);
         }
 

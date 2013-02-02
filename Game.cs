@@ -55,9 +55,26 @@ namespace GameSaveInfo {
         }
 
 
+        public GameVersion addVersion(String os, String platform, String release) {
+            GameVersion ver = new GameVersion(this, os, platform, release);
+            this.xml.AppendChild(ver.XML);
+            this.Versions.Add(ver);
+            return ver;
+        }
         public void addVersion(GameVersion version) {
             this.XML.AppendChild(version.XML);
             this.Versions.Add(version);
+        }
+
+        public bool hasVersion(String os, String platform, String release) {
+            return getVersion(os,platform,release) != null;
+        }
+        public GameVersion getVersion(String os, String platform, String release) {
+            foreach (GameVersion version in this.Versions) {
+                if (version.ID.Matches(os, platform, null, null, release,null))
+                    return version;
+            }
+            return null;
         }
 
         protected override XmlElement WriteData(XmlElement element) {

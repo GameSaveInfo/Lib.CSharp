@@ -205,6 +205,26 @@ namespace GameSaveInfo {
                 return a.CompareTo(b);
             }
         }
+        public bool Matches(string os, string platform, string region, string media, string release, string type) {
+            if(os != this.OS)
+                return false;
 
+            if( platform != this.Platform)
+                return false;
+
+            if (region !=this.Region)
+                return false;
+
+            if( media != this.Media)
+                return false;
+
+            if (release != this.Release)
+                return false;
+
+            if (type != this.Type)
+                return false;
+
+            return true;
+        }
     }
 }

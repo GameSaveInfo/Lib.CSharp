@@ -74,10 +74,10 @@ namespace GameSaveInfo {
         public List<APlayStationID> PlayStationIDs = new List<APlayStationID>();
         public List<ScummVM> ScummVMs = new List<ScummVM>();
 
-        public GameVersion(Game parent, string os, string release)
+        public GameVersion(Game parent, string os, string platform, string release)
             : base(parent) {
             DetectionRequired = false;
-            this.ID = new GameIdentifier(parent.Name, os, null, null, null, release, null);
+            this.ID = new GameIdentifier(parent.Name, os, platform, null, null, release, null);
         }
 
         public GameVersion(Game parent, XmlElement ele)

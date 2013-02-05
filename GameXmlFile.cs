@@ -8,12 +8,14 @@ namespace GameSaveInfo {
         public static Version SupportedVersion = new Version(2, 0);
 
         public const string Schema = "GameSaveInfo20.xsd";
-
+		
+		public const string RootElementName = "programs";
+		
         public DateTime date;
         public Version Version { get; protected set; }
 
         public GameXmlFile(FileInfo file)
-            : base(file, true) {
+            : base(file, true, GameXmlFile.RootElementName) {
         }
 
         protected override void loadXmlFile() {

@@ -6,7 +6,12 @@ namespace GameSaveInfo {
         None,
         AltSavePaths,
         InstallLocation,
-
+		
+		// Linux evs, pretty much always just these two.
+		Root,
+		Home,
+		
+		// Now we start the windows EVs
         Drive,
 
         AllUsersProfile,

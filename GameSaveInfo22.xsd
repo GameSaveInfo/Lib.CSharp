@@ -87,11 +87,9 @@
         <xs:enumeration value="commonapplicationdata"/>
         <xs:enumeration value="drive"/>
         <xs:enumeration value="flashshared" />
-        <xs:enumeration value="home" />
         <xs:enumeration value="installlocation"/>
         <xs:enumeration value="localappdata"/>
         <xs:enumeration value="public"/>
-        <xs:enumeration value="root"/>
         <xs:enumeration value="savedgames"/>
         <xs:enumeration value="steamuser"/>
         <xs:enumeration value="steamcommon"/>
@@ -493,7 +491,7 @@
       <xs:attribute name="minorVersion" use="required">
         <xs:simpleType>
           <xs:restriction base="xs:integer" >
-            <xs:pattern value="2"/>
+            <xs:pattern value="0"/>
           </xs:restriction>
         </xs:simpleType>
       </xs:attribute>

@@ -177,6 +177,10 @@ namespace GameSaveInfo {
             return return_me.ToString();
         }
 
+		public override string ToString() {
+			return GameIdentifier.ToString(this);
+		}
+
         public override int GetHashCode() {
             int re = Name.GetHashCode();
             if (OS != null)

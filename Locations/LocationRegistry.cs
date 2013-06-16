@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Xml;
-
+using System.Text;
 namespace GameSaveInfo {
     public class LocationRegistry : ALocation {
         // Used when delaing with a registry key
@@ -84,5 +84,18 @@ namespace GameSaveInfo {
             }
             throw new NotImplementedException("The specified key root in " + parse_me + " is not recognized. You either spelled it wrong or something.");
         }
+
+		public override string ToString() {
+			StringBuilder output = new StringBuilder(@"\HKEY_");
+			output.Append(this.Root.ToUpper());
+			output.Append(@"\");
+			output.Append(this.Key);
+			output.Append(@"\");
+			if (Value != null) {
+				output.Append(this.Value);
+			}
+			return output.ToString();
+			
+		}
     }
 }

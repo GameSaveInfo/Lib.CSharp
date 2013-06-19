@@ -139,7 +139,7 @@ namespace GameSaveInfo {
             return element;
         }
 
-        public static int Compare(GameIdentifier a, GameIdentifier b) {
+        public static int Compare(GameIdentifier a, GameIdentifier b, bool ignore_revision) {
             int result = compare(a.Name, b.Name);
 
             if (result == 0)
@@ -154,17 +154,22 @@ namespace GameSaveInfo {
                 result = compare(a.Media, b.Media);
             if (result == 0)
                 result = compare(a.Type, b.Type);
-			if (result == 0)
+			if (!ignore_revision && result == 0)
 				result = compare(a.Revision, b.Revision);
+
             return result;
         }
 
-        public int CompareTo(GameIdentifier comparable) {
-            return Compare(this, comparable);
-        }
+		public int CompareTo(GameIdentifier comparable) {
+			return Compare(this, comparable, false);
+		}
+
+		public int CompareTo(GameIdentifier comparable, bool ignore_revision) {
+			return Compare(this, comparable, ignore_revision);
+		}
 
         public static bool Equals(GameIdentifier a, GameIdentifier b) {
-            return Compare(a, b) == 0;
+            return Compare(a, b, false) == 0;
         }
 
         public Boolean Equals(GameIdentifier to_me) {

@@ -11,11 +11,12 @@ namespace GameSaveInfo {
         public String Media { get; protected set; }
         public String Release { get; protected set; }
         public String Type { get; protected set; }
+		public int Revision { get; protected set; }
 
 
-        public static readonly List<string> attributes = new List<string> { "os", "platform", "region", "media", "release", "type", "gsm_id" };
+        public static readonly List<string> attributes = new List<string> { "os", "platform", "region", "media", "release", "type", "gsm_id", "revision" };
 
-        public GameIdentifier(string name, string os, string platform, string region, string media, string release, string type)
+        public GameIdentifier(string name, string os, string platform, string region, string media, string release, string type, int revision)
             : this(name, release) {
             this.OS = os;
             this.Platform = platform;
@@ -23,14 +24,17 @@ namespace GameSaveInfo {
             this.Region = region;
             this.Media = media;
             this.Type = type;
+			this.Revision = revision;
         }
         public GameIdentifier(string name, string release) {
             this.Name = name;
             this.Release = release;
+			this.Revision = 0;
         }
         public GameIdentifier(string name, XmlElement element)
             : this(element) {
             this.Name = name;
+		
         }
         public GameIdentifier(XmlElement element) {
             foreach (XmlAttribute attrib in element.Attributes) {
@@ -80,6 +84,9 @@ namespace GameSaveInfo {
                     case "virtualstore":
                     case "gsm_id":
                         break;
+					case "revision":
+						this.Revision = int.Parse(attrib.Value);
+						break;
                     default:
                         throw new NotSupportedException(attrib.Name);
                 }
@@ -124,7 +131,11 @@ namespace GameSaveInfo {
                 attribute.Value = Type;
                 element.SetAttributeNode(attribute);
             }
-
+			if (Revision != 0) {
+				attribute = doc.CreateAttribute("revision");
+				attribute.Value = Revision.ToString();
+				element.SetAttributeNode(attribute);
+			}
             return element;
         }
 
@@ -143,6 +154,8 @@ namespace GameSaveInfo {
                 result = compare(a.Media, b.Media);
             if (result == 0)
                 result = compare(a.Type, b.Type);
+			if (result == 0)
+				result = compare(a.Revision, b.Revision);
             return result;
         }
 
@@ -173,7 +186,8 @@ namespace GameSaveInfo {
                 return_me.Append(" " + id.Region);
             if (id.Media != null)
                 return_me.Append(" " + id.Media);
-
+			if (id.Revision != 0)
+				return_me.Append(" " + id.Revision);
             return return_me.ToString();
         }
 
@@ -195,7 +209,8 @@ namespace GameSaveInfo {
                 re += Release.GetHashCode();
             if (Type != null)
                 re += Type.GetHashCode();
-
+			if (Revision != 0)
+				re += Revision.GetHashCode();
             return re;
         }
 

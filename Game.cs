@@ -70,11 +70,15 @@ namespace GameSaveInfo {
             return getVersion(os,platform,release) != null;
         }
         public GameVersion getVersion(String os, String platform, String release) {
+			GameVersion candidate = null;
             foreach (GameVersion version in this.Versions) {
-                if (version.ID.Matches(os, platform, null, null, release,null))
-                    return version;
+				if (version.ID.Matches(os, platform, null, null, release, null)) {
+					if (candidate == null || version.ID.Revision > candidate.ID.Revision) {
+						candidate = version;
+					}
+				}
             }
-            return null;
+			return candidate;
         }
 
         protected override XmlElement WriteData(XmlElement element) {

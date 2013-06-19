@@ -91,6 +91,7 @@
   <ItemGroup>
     <None Include="GameSave.Info.snk" />
     <EmbeddedResource Include="GameSaveInfo20.xsd" />
+    <None Include="GameSaveInfo202.xsd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -132,6 +132,10 @@ namespace GameSaveInfo {
                     return EnvironmentVariable.VirtualStore;
                 case "commonapplicationdata":
                     return EnvironmentVariable.CommonApplicationData;
+				case "home":
+					return EnvironmentVariable.Home;
+				case "root":
+					return EnvironmentVariable.Root;
             }
             throw new NotImplementedException("Unrecognized environment variable: " + parse_me);
         }

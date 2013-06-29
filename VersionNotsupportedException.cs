@@ -4,7 +4,7 @@ namespace GameSaveInfo {
     public class VersionNotSupportedException : NotSupportedException {
         public Version SupportedVersion {
             get {
-                return GameXmlFile.SupportedVersion;
+                return GameXmlFile.MinimumSupportedVersion;
             }
         }
         public Version FileVersion { get; protected set; }

@@ -5,7 +5,8 @@ using XmlData;
 
 namespace GameSaveInfo {
     public class GameXmlFile : AXmlDataFile<Game> {
-        public static Version SupportedVersion = new Version(2, 2);
+		public static Version MinimumSupportedVersion = new Version(2, 2);
+		public static Version MaximumSupportedVersion = new Version(2, 0,2);
 
         public const string Schema = "GameSaveInfo22.xsd";
 		
@@ -26,9 +27,9 @@ namespace GameSaveInfo {
                 date = DateTime.Parse("November 5, 1955");
 
             if (DocumentElement.HasAttribute("majorVersion") && DocumentElement.HasAttribute("minorVersion"))
-                Version = new Version(Int32.Parse(DocumentElement.Attributes["majorVersion"].Value), Int32.Parse(DocumentElement.Attributes["minorVersion"].Value));
+				Version = new Version(Int32.Parse(DocumentElement.Attributes["majorVersion"].Value), Int32.Parse(DocumentElement.Attributes["minorVersion"].Value));
 
-            if (Version != SupportedVersion) {
+            if (Version < MinimumSupportedVersion || Version > MaximumSupportedVersion) {
                 throw new VersionNotSupportedException(Version);
             }
 
@@ -51,13 +52,17 @@ namespace GameSaveInfo {
             XmlElement ele = this.CreateElement("programs");
 
             XmlAttribute attr = this.CreateAttribute("majorVersion");
-            attr.Value = SupportedVersion.Major.ToString();
+            attr.Value = MaximumSupportedVersion.Major.ToString();
             ele.Attributes.Append(attr);
 
             attr = this.CreateAttribute("minorVersion");
-            attr.Value = SupportedVersion.Minor.ToString();
+            attr.Value = MaximumSupportedVersion.Minor.ToString();
             ele.Attributes.Append(attr);
 
+			attr = this.CreateAttribute("revision");
+			attr.Value = MaximumSupportedVersion.Minor.ToString();
+			ele.Attributes.Append(attr);
+			
             attr = this.CreateAttribute("xmlns:xsi");
             attr.Value = @"http://www.w3.org/2001/XMLSchema-instance";
             ele.Attributes.Append(attr);

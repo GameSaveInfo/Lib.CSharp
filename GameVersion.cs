@@ -77,7 +77,7 @@ namespace GameSaveInfo {
         public GameVersion(Game parent, string os, string platform, string release)
             : base(parent) {
             DetectionRequired = false;
-            this.ID = new GameIdentifier(parent.Name, os, platform, null, null, release, null);
+            this.ID = new GameIdentifier(parent.Name, os, platform, null, null, release, null,0);
         }
 
         public GameVersion(Game parent, XmlElement ele)

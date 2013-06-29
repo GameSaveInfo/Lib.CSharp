@@ -10,6 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GameSaveInfo</RootNamespace>
     <AssemblyName>GameSave.Info</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ReleaseVersion>1.1.0</ReleaseVersion>
   </PropertyGroup>
@@ -88,7 +89,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="GameSave.Info.snk" />
-    <EmbeddedResource Include="GameSaveInfo20.xsd" />
     <EmbeddedResource Include="GameSaveInfo22.xsd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

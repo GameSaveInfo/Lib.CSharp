@@ -5,8 +5,8 @@ using XmlData;
 
 namespace GameSaveInfo {
     public class GameXmlFile : AXmlDataFile<Game> {
-		public static Version MinimumSupportedVersion = new Version(2, 2);
-		public static Version MaximumSupportedVersion = new Version(2, 0,2);
+		public static Version MinimumSupportedVersion = new Version(2, 0, 2);
+		public static Version MaximumSupportedVersion = new Version(2, 2);
 
         public const string Schema = "GameSaveInfo22.xsd";
 		

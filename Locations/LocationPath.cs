@@ -18,21 +18,21 @@ namespace GameSaveInfo {
         }
 
         public void PrependPath(string path) {
-            if (path == null)
+            if (String.IsNullOrEmpty(path))
                 return;
-            if (Path == null)
-                Path = path;
+            if (String.IsNullOrEmpty(this.Path))
+                this.Path = path;
             else
-                Path = System.IO.Path.Combine(path, Path);
+                this.Path = System.IO.Path.Combine(path, this.Path);
         }
 
         public void AppendPath(string path) {
-            if (path == null)
+            if (String.IsNullOrEmpty(path))
                 return;
-            if (Path == null)
-                Path = path;
+            if (String.IsNullOrEmpty(this.Path))
+                this.Path = path;
             else
-                Path = System.IO.Path.Combine(Path, path);
+                this.Path = System.IO.Path.Combine(this.Path, path);
         }
 
         public override string ElementName {
@@ -60,8 +60,8 @@ namespace GameSaveInfo {
 
         public LocationPath(LocationPath copy_me)
             : base(copy_me) {
-            EV = copy_me.EV;
-            Path = copy_me.Path;
+            this.EV = copy_me.EV;
+            this.Path = copy_me.Path;
             this.IsEnabled = copy_me.IsEnabled;
             this.IsExpanded = copy_me.IsExpanded;
             this.IsSelected = copy_me.IsSelected;
@@ -102,14 +102,14 @@ namespace GameSaveInfo {
 
 
         public override string ToString() {
-            if (Path == null)
+            if (String.IsNullOrEmpty(Path))
                 return EV.ToString();
             else
                 return System.IO.Path.Combine(EV.ToString(), Path);
         }
         public virtual string FullRelativeDirPath {
             get {
-                if (Path == null || Path == "") {
+                if (String.IsNullOrEmpty(Path)) {
                     return EV.ToString();
                 } else {
                     return System.IO.Path.Combine(EV.ToString(), Path);

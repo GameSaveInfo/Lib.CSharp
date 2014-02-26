@@ -67,8 +67,8 @@ namespace GameSaveInfo {
             List<DirectoryInfo> directories = new List<DirectoryInfo>();
             List<string> return_me = new List<string>();
 
-            if (Name == null) {
-                if (Path == null) {
+            if (String.IsNullOrEmpty(Name)) {
+                if (String.IsNullOrEmpty(Path)) {
                     if (Directory.Exists(location)) {
                         return_me.AddRange(findTheseFilesHelper(location, gatherFiles(location)));
                     }
@@ -78,7 +78,7 @@ namespace GameSaveInfo {
                         return_me.AddRange(findTheseFilesHelper(location, gatherFiles(directory.FullName)));
                     }
                 }
-            } else if (Path == null) {
+            } else if (String.IsNullOrEmpty(Path)) {
                 if (Directory.Exists(location)) {
                     List<string> files = new List<string>();
                     foreach (FileInfo read_me in new DirectoryInfo(location).GetFiles(Name)) {

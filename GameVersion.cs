@@ -45,7 +45,7 @@ namespace GameSaveInfo {
         protected string _title = null;
         public string Title {
             get {
-                if (_title == null)
+                if (String.IsNullOrEmpty(_title))
                     return Game.Title;
                 return _title;
             }
@@ -170,9 +170,9 @@ namespace GameSaveInfo {
                 element.AppendChild(Game.createElement("contributor", con));
             }
 
-            if (Comment != null)
+            if (!String.IsNullOrEmpty(Comment))
                 element.AppendChild(Game.createElement("comment", Comment));
-            if (RestoreComment != null)
+            if (!String.IsNullOrEmpty(RestoreComment))
                 element.AppendChild(Game.createElement("restore_comment", RestoreComment));
 
 
@@ -191,7 +191,7 @@ namespace GameSaveInfo {
             }
         }
         public FileType addFileType(string name) {
-            if (name == null)
+            if (String.IsNullOrEmpty(name))
                 name = "";
             if (!this.FileTypes.ContainsKey(name)) {
                 FileType type = new FileType(this, name);

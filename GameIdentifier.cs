@@ -101,32 +101,32 @@ namespace GameSaveInfo {
                 attribute.Value = Name;
                 element.SetAttributeNode(attribute);
             }
-            if (OS != null) {
+            if (!String.IsNullOrEmpty(OS)) {
                 attribute = doc.CreateAttribute("os");
                 attribute.Value = OS;
                 element.SetAttributeNode(attribute);
             }
-            if (Platform != null) {
+            if (!String.IsNullOrEmpty(Platform)) {
                 attribute = doc.CreateAttribute("platform");
                 attribute.Value = Platform;
                 element.SetAttributeNode(attribute);
             }
-            if (Region != null) {
+            if (!String.IsNullOrEmpty(Region)) {
                 attribute = doc.CreateAttribute("region");
                 attribute.Value = Region;
                 element.SetAttributeNode(attribute);
             }
-            if (Media != null) {
+            if (!String.IsNullOrEmpty(Media)) {
                 attribute = doc.CreateAttribute("media");
                 attribute.Value = Media;
                 element.SetAttributeNode(attribute);
             }
-            if (Release != null) {
+            if (!String.IsNullOrEmpty(Release)) {
                 attribute = doc.CreateAttribute("release");
                 attribute.Value = Release;
                 element.SetAttributeNode(attribute);
             }
-            if (Type != null) {
+            if (!String.IsNullOrEmpty(Type)) {
                 attribute = doc.CreateAttribute("type");
                 attribute.Value = Type;
                 element.SetAttributeNode(attribute);
@@ -179,17 +179,17 @@ namespace GameSaveInfo {
         public static String ToString(GameIdentifier id) {
             StringBuilder return_me = new StringBuilder(id.Name);
 
-            if (id.Release != null)
+            if (!String.IsNullOrEmpty(id.Release))
                 return_me.Append(" " + id.Release);
-            if (id.Type != null)
+            if (!String.IsNullOrEmpty(id.Type))
                 return_me.Append(" " + id.Type);
-            if (id.OS != null)
+            if (!String.IsNullOrEmpty(id.OS))
                 return_me.Append(" " + id.OS);
-            if (id.Platform != null)
+            if (!String.IsNullOrEmpty(id.Platform))
                 return_me.Append(" " + id.Platform);
-            if (id.Region != null)
+            if (!String.IsNullOrEmpty(id.Region))
                 return_me.Append(" " + id.Region);
-            if (id.Media != null)
+            if (!String.IsNullOrEmpty(id.Media))
                 return_me.Append(" " + id.Media);
 			if (id.Revision != 0)
 				return_me.Append(" " + id.Revision);
@@ -202,17 +202,17 @@ namespace GameSaveInfo {
 
         public override int GetHashCode() {
             int re = Name.GetHashCode();
-            if (OS != null)
+            if (!String.IsNullOrEmpty(OS))
                 re += OS.GetHashCode();
-            if (Platform != null)
+            if (!String.IsNullOrEmpty(Platform))
                 re += Platform.GetHashCode();
-            if (Region != null)
+            if (!String.IsNullOrEmpty(Region))
                 re += Region.GetHashCode();
-            if (Media != null)
+            if (!String.IsNullOrEmpty(Media))
                 re += Media.GetHashCode();
-            if (Release != null)
+            if (!String.IsNullOrEmpty(Release))
                 re += Release.GetHashCode();
-            if (Type != null)
+            if (!String.IsNullOrEmpty(Type))
                 re += Type.GetHashCode();
 			if (Revision != 0)
 				re += Revision.GetHashCode();

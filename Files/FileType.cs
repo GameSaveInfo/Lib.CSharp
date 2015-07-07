@@ -46,7 +46,7 @@ namespace GameSaveInfo {
 
 
         protected override XmlElement WriteData(XmlElement element) {
-            if (this.Type != null && this.Type != "") {
+            if (!String.IsNullOrEmpty(this.Type)) {
                 addAtribute(element, "type", this.Type);
             }
             foreach (Include save in Inclusions) {

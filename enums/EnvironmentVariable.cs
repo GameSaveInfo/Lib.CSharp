@@ -1,5 +1,11 @@
-﻿
+﻿using System.Collections.Generic;
 namespace GameSaveInfo {
+    // Comparer class for alphabetically sorting Enums
+    public class EnvironmentVariableAlphabeticalCompare : IComparer<EnvironmentVariable> {
+        public int Compare(EnvironmentVariable x, EnvironmentVariable y) {
+            return x.ToString().CompareTo(y.ToString());
+        }
+    }
 
     public enum EnvironmentVariable {
         // These are ordered according to priority, do NOT reorganize

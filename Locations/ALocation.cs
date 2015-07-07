@@ -73,11 +73,11 @@ namespace GameSaveInfo {
         // This receives a path and modifies it based on the object's append and detract settings
         public static string modifyPath(string path, ALocation holder) {
             path = path.TrimEnd(Path.DirectorySeparatorChar);
-            if (holder.Detract != null) {
+            if (!String.IsNullOrEmpty(holder.Detract)) {
                 if (path.EndsWith(holder.Detract))
                     path = path.Substring(0, path.Length - holder.Detract.Length);
             }
-            if (holder.Append != null)
+            if (!String.IsNullOrEmpty(holder.Append))
                 path = Path.Combine(path, holder.Append);
             return path.TrimEnd(Path.DirectorySeparatorChar);
         }

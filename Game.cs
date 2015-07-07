@@ -40,7 +40,7 @@ namespace GameSaveInfo {
         }
 
         public static string prepareGameName(string title) {
-            if (title == "")
+            if (String.IsNullOrEmpty(title))
                 return "";
             string name = Regex.Replace(title, @"[^A-Za-z0-9 ]+", "");
             name = name.Replace("&", "And");
@@ -93,7 +93,7 @@ namespace GameSaveInfo {
 
             element.AppendChild(createElement("title", Title));
 
-            if (Comment != null)
+            if (!String.IsNullOrEmpty(Comment))
                 element.AppendChild(createElement("comment", Comment));
 
             foreach (GameVersion ver in Versions) {

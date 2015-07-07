@@ -87,7 +87,7 @@ namespace GameSaveInfo {
             StringBuilder pattern = new StringBuilder();
             pattern.Append(prefix);
             pattern.Append(suffix);
-            if (append != null) {
+            if (!String.IsNullOrEmpty(append)) {
                 pattern.Append(append);
             }
             pattern.Append("*");
@@ -99,7 +99,7 @@ namespace GameSaveInfo {
             pattern.Append(prefix);
             pattern.Append("?");
             pattern.Append(suffix);
-            if (append != null) {
+            if (!String.IsNullOrEmpty(append)) {
                 pattern.Append(append);
             }
             pattern.Append("*");

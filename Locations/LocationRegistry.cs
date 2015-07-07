@@ -91,7 +91,7 @@ namespace GameSaveInfo {
 			output.Append(@"\");
 			output.Append(this.Key);
 			output.Append(@"\");
-			if (Value != null) {
+			if (!String.IsNullOrEmpty(Value)) {
 				output.Append(this.Value);
 			}
 			return output.ToString();

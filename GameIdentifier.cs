@@ -4,14 +4,7 @@ using System.Text;
 using System.Xml;
 namespace GameSaveInfo {
     public class GameIdentifier : IComparable<GameIdentifier>, IEquatable<GameIdentifier> {
-        public String Name { get; protected set; }
-        public String OS { get; protected set; }
-        public String Platform { get; protected set; }
-        public String Region { get; protected set; }
-        public String Media { get; protected set; }
-        public String Release { get; protected set; }
-        public String Type { get; protected set; }
-		public int Revision { get; protected set; }
+
 
 
         public static readonly List<string> attributes = new List<string> { "os", "platform", "region", "media", "release", "type", "gsm_id", "revision" };
@@ -139,42 +132,7 @@ namespace GameSaveInfo {
             return element;
         }
 
-        public static int Compare(GameIdentifier a, GameIdentifier b, bool ignore_revision) {
-            int result = compare(a.Name, b.Name);
 
-            if (result == 0)
-                result = compare(a.Release, b.Release);
-            if (result == 0)
-                result = compare(a.OS, b.OS);
-            if (result == 0)
-                result = compare(a.Platform, b.Platform);
-            if (result == 0)
-                result = compare(a.Region, b.Region);
-            if (result == 0)
-                result = compare(a.Media, b.Media);
-            if (result == 0)
-                result = compare(a.Type, b.Type);
-			if (!ignore_revision && result == 0)
-				result = compare(a.Revision, b.Revision);
-
-            return result;
-        }
-
-		public int CompareTo(GameIdentifier comparable) {
-			return Compare(this, comparable, false);
-		}
-
-		public int CompareTo(GameIdentifier comparable, bool ignore_revision) {
-			return Compare(this, comparable, ignore_revision);
-		}
-
-        public static bool Equals(GameIdentifier a, GameIdentifier b) {
-            return Compare(a, b, false) == 0;
-        }
-
-        public Boolean Equals(GameIdentifier to_me) {
-            return Equals(this, to_me as GameIdentifier);
-        }
 
         public static String ToString(GameIdentifier id) {
             StringBuilder return_me = new StringBuilder(id.Name);

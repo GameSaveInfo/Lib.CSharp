@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -48,35 +48,42 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\AConverter.cs" />
-    <Compile Include="enums\GameType.cs" />
-    <Compile Include="enums\RegRoot.cs" />
-    <Compile Include="Files\AFile.cs" />
-    <Compile Include="Files\Exclude.cs" />
-    <Compile Include="Files\FileType.cs" />
-    <Compile Include="Files\Identifier.cs" />
-    <Compile Include="Files\Include.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="GameIdentifier.cs" />
-    <Compile Include="GameVersion.cs" />
-    <Compile Include="GameXmlFile.cs" />
-    <Compile Include="Links.cs" />
-    <Compile Include="Locations\ALocation.cs" />
-    <Compile Include="enums\EnvironmentVariable.cs" />
-    <Compile Include="Locations\LocationParent.cs" />
-    <Compile Include="Locations\LocationPath.cs" />
-    <Compile Include="Locations\LocationRegistry.cs" />
-    <Compile Include="Locations\Locations.cs" />
-    <Compile Include="Locations\LocationShortcut.cs" />
-    <Compile Include="PlayStation\PlayStation1ID.cs" />
-    <Compile Include="PlayStation\PlayStation2ID.cs" />
-    <Compile Include="PlayStation\PlayStation3ID.cs" />
-    <Compile Include="PlayStation\APlayStationID.cs" />
-    <Compile Include="PlayStation\PlayStationPortableID.cs" />
+    <Compile Include="Data\AProgramID.cs" />
+    <Compile Include="Data\Options\RestoreOptions.cs" />
+    <Compile Include="Data\Options\WindowsOptions.cs" />
+    <Compile Include="Data\DataRoot.cs" />
+    <None Include="enums\GameType.cs" />
+    <Compile Include="Data\Enums\RegRoot.cs" />
+    <None Include="Files\AFile.cs" />
+    <None Include="Files\Exclude.cs" />
+    <None Include="Files\FileType.cs" />
+    <None Include="Files\Identifier.cs" />
+    <None Include="Files\Include.cs" />
+    <Compile Include="Data\Programs\Application.cs" />
+    <Compile Include="Data\Programs\AProgram.cs" />
+    <None Include="GameIdentifier.cs" />
+    <Compile Include="Data\Programs\Expansion.cs" />
+    <Compile Include="Data\Programs\Game.cs" />
+    <Compile Include="Data\Programs\Mod.cs" />
+    <Compile Include="Data\Programs\ProgramVersion.cs" />
+    <None Include="GameXmlFile.cs" />
+    <None Include="Links.cs" />
+    <Compile Include="Data\Locations\ALocation.cs" />
+    <Compile Include="Data\Enums\EnvironmentVariable.cs" />
+    <Compile Include="Data\Locations\ParentLocation.cs" />
+    <Compile Include="Data\Locations\PathLocation.cs" />
+    <Compile Include="Data\Locations\RegistryLocation.cs" />
+    <Compile Include="Data\Locations\ShortcutLocation.cs" />
+    <None Include="PlayStation\PlayStation1ID.cs" />
+    <None Include="PlayStation\PlayStation2ID.cs" />
+    <None Include="PlayStation\PlayStation3ID.cs" />
+    <None Include="PlayStation\APlayStationID.cs" />
+    <None Include="PlayStation\PlayStationPortableID.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Registry\RegistryType.cs" />
-    <Compile Include="Registry\RegistryEntry.cs" />
-    <Compile Include="ScummVM.cs" />
-    <Compile Include="VersionNotsupportedException.cs" />
+    <None Include="Registry\RegistryType.cs" />
+    <None Include="Registry\RegistryEntry.cs" />
+    <None Include="ScummVM.cs" />
+    <None Include="VersionNotsupportedException.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XmlData\XmlData.csproj">

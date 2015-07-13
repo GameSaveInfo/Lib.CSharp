@@ -4,7 +4,7 @@ using System.Xml;
 using System.Xml.Serialization;
 
 namespace GameSaveInfo.Data.Programs {
-    public class ProgramVersion: AProgramID {
+    public class ProgramVersion: AProgramVersionID {
         public enum Requirement {
             [XmlEnum("optional")]
             Optional,

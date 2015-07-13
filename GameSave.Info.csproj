@@ -38,6 +38,14 @@
     <AssemblyOriginatorKeyFile>GameSave.Info.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SecondLanguage, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SecondLanguage.1.0.1\lib\net35\SecondLanguage.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Converters\AConverter.cs" />
     <Compile Include="Data\AProgramID.cs" />
+    <Compile Include="Data\AProgramVersionID.cs" />
     <Compile Include="Data\Options\RestoreOptions.cs" />
     <Compile Include="Data\Options\WindowsOptions.cs" />
     <Compile Include="Data\DataRoot.cs" />
@@ -74,6 +83,7 @@
     <Compile Include="Data\Locations\PathLocation.cs" />
     <Compile Include="Data\Locations\RegistryLocation.cs" />
     <Compile Include="Data\Locations\ShortcutLocation.cs" />
+    <None Include="packages.config" />
     <None Include="PlayStation\PlayStation1ID.cs" />
     <None Include="PlayStation\PlayStation2ID.cs" />
     <None Include="PlayStation\PlayStation3ID.cs" />
